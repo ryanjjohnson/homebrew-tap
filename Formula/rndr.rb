@@ -1,4 +1,4 @@
-# Written by update.sh from the v0.1.6 release. Do not edit by hand.
+# Written by update.sh from the v0.1.7 release. Do not edit by hand.
 class Rndr < Formula
   desc "ASCII previewer for STL, OBJ and 3MF models in the terminal"
   homepage "https://github.com/ryanjjohnson/rndr"
@@ -6,23 +6,23 @@ class Rndr < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/ryanjjohnson/rndr/releases/download/v0.1.6/rndr-darwin-arm64"
-      sha256 "6efa44aa073f20991c40ce9114706b98257416ce895a29477b6ee1dea4eac8d8"
+      url "https://github.com/ryanjjohnson/rndr/releases/download/v0.1.7/rndr-darwin-arm64"
+      sha256 "5b14b84e1d2a7afd87f7e5be71a7616806942b9fd4e657aeda8da8f4acaf7a80"
     end
     on_intel do
-      url "https://github.com/ryanjjohnson/rndr/releases/download/v0.1.6/rndr-darwin-amd64"
-      sha256 "d2be2e652f52d33113ab72e9fe794d580192137ea24779e1b2c3e6ed513dfdad"
+      url "https://github.com/ryanjjohnson/rndr/releases/download/v0.1.7/rndr-darwin-amd64"
+      sha256 "403e5c08b80c102bd7bf495dee93d676b1ccfe27b870b1223b3354b01cb71ec0"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/ryanjjohnson/rndr/releases/download/v0.1.6/rndr-linux-arm64"
-      sha256 "b23ffb4d3685fcb4bea0ffed9cde98d9f99eaf8dc0805197aa24874ea6334f18"
+      url "https://github.com/ryanjjohnson/rndr/releases/download/v0.1.7/rndr-linux-arm64"
+      sha256 "9bbf7b70b85b59c1a23baf103eb905a6ee969f0f0e7497f1f3a00912f59a6c1a"
     end
     on_intel do
-      url "https://github.com/ryanjjohnson/rndr/releases/download/v0.1.6/rndr-linux-amd64"
-      sha256 "f534aea6644292454693c40d43e18e49a5f5b894584719d29264ecd7a8a8fb4c"
+      url "https://github.com/ryanjjohnson/rndr/releases/download/v0.1.7/rndr-linux-amd64"
+      sha256 "4a4df6c8068fcb79012819eb87321ac1eadc3e9da549456e1df05c53ee02c119"
     end
   end
 
