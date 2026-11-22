@@ -6,6 +6,10 @@ on:
   schedule:
     - cron: '23 * * * *'
   workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to use, such as v0.1.5 (default is the latest)
+        required: false
 
 permissions:
   contents: write # commit the regenerated formula
@@ -21,7 +25,9 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Regenerate the formula from the latest release (provenance checked)
-        run: ./update.sh
+        env:
+          TAG: ${{ inputs.tag }}
+        run: ./update.sh ${TAG:+"$TAG"}
       - name: Commit it if it changed
         run: |
           if git diff --quiet; then
