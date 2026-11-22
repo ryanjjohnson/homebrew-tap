@@ -1,0 +1,26 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  install:
+    name: brew install on ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, macos-15-intel, ubuntu-latest, ubuntu-24.04-arm]
+    runs-on: ${{ matrix.os }}
+    steps:
+      # also checks this repository out as the tap ryanjjohnson/tap
+      - uses: Homebrew/actions/setup-homebrew@main
+      - run: brew install ryanjjohnson/tap/rndr
+      - run: brew test ryanjjohnson/tap/rndr
+      - run: brew audit --strict ryanjjohnson/tap/rndr
+      - run: brew style ryanjjohnson/tap

@@ -1,0 +1,36 @@
+name: update
+
+# Picks up new rndr releases. The rndr repository cannot push here without a
+# credential, so this repository looks instead.
+on:
+  schedule:
+    - cron: '23 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write # commit the regenerated formula
+  actions: write # start the install tests for that commit
+
+concurrency: update
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7
+      - name: Regenerate the formula from the latest release (provenance checked)
+        run: ./update.sh
+      - name: Commit it if it changed
+        run: |
+          if git diff --quiet; then
+            exit 0
+          fi
+          version=$(sed -n 's|.*/download/v\([0-9.]*\)/.*|\1|p' Formula/rndr.rb | head -1)
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -qam "rndr $version"
+          git push
+          # a push made with the workflow's own token does not start other workflows
+          gh workflow run tests.yml --ref main
