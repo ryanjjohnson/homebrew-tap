@@ -1,10 +1,9 @@
 name: update
 
-# Picks up new rndr releases. The rndr repository cannot push here without a
-# credential, so this repository looks instead.
+# Normally not needed: rndr's release workflow updates the formula itself, using
+# a deploy key for this repository. This is the manual way to do the same thing,
+# for re-pointing the formula at a particular release or recovering if that failed.
 on:
-  schedule:
-    - cron: '23 * * * *'
   workflow_dispatch:
     inputs:
       tag:

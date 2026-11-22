@@ -20,8 +20,10 @@ your machine. Homebrew checks the download against the SHA-256 in the formula.
 The formula is never edited by hand. `update.sh` writes it, and only after checking that each
 release binary carries build provenance signed by rndr's own release workflow for the commit the
 release tag points at. A file swapped into a release by hand would fail that check and never
-reach the formula. The `update` workflow runs it hourly; the `tests` workflow then installs and
-tests the formula on all four platforms.
+reach the formula. rndr's release workflow runs it as the last step of each release, using a
+deploy key that can write to this repository and nothing else; the `tests` workflow then
+installs and tests the formula on all four platforms. The `update` workflow here does the same
+by hand.
 
 To check a binary yourself:
 
